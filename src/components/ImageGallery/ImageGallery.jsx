@@ -1,33 +1,15 @@
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-import { Component } from 'react';
 import { ImageList } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
 
 
+export const ImageGallery = ({ images, onClick }) => {
 
-export default class ImageGallery extends Component{
-  static propTypes = {
-    images: PropTypes.array.isRequired, 
-    onClick: PropTypes.func.isRequired,
+  if (!images || images.length === 0) {
+    return <p>Start searching for images</p>;
   }
 
-  // async componentDidUpdate(prevProps, prevState){
-  //   const { loadMore, page, imageName, } = this.props;
-  //   if (prevProps.imageName !== imageName || prevProps.page !== page) {
-  //     if (prevProps.imageName !== imageName) {
-  //       loadMore(false);
-  //       this.setState({ images: [], page: 1 });
-  //     }
-  //   }
-  // }
-    render() {
-      const { images, onClick } = this.props;
-
-      if (!images || images.length === 0) {
-        return <p>Start searching for images</p>;
-      };
-        
-      return  (
+  return  (
       <div>
 
           <ImageList>
@@ -45,5 +27,9 @@ export default class ImageGallery extends Component{
         
       </div>
     );
-  };
-};
+}
+
+ImageGallery.propTypes = {
+  images: PropTypes.array.isRequired, 
+    onClick: PropTypes.func.isRequired,
+}
