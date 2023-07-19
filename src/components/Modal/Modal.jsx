@@ -18,7 +18,7 @@ export const Modal = ({ data, onClose }) => {
         }
     };
 
-    const { largeImageURL, tags } = data || {};
+    const {  tags } = data || {};
 
      return createPortal(
             <Overlay onClick={handleOnClose}>
