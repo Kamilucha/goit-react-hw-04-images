@@ -8,8 +8,8 @@ const modalRoot= document.querySelector('#modal-root')
 
 export const Modal = ({ data, onClose }) => {
     useEffect(() => {
-        window.addEventListener('keydown', handleOnClose)
-        return window.removeEventListener('keydown', handleOnClose)
+        window.addEventListener('keydown', e => handleOnClose(e))
+        return window.removeEventListener('keydown',e =>  handleOnClose(e))
     });
 
     const handleOnClose = e => {

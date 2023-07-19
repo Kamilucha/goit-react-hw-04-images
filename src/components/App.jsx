@@ -91,7 +91,7 @@ export const App = () => {
   const [loadMore, setLoadMore] = useState(false);
   const [page, setPage] = useState(1);
   const [totalImages, setTotalImages] = useState(0);
-  const [imageName, setImageName] = useState('initialImage');
+  const [imageName, setImageName] = useState('');
 
   useEffect(() => {
     
@@ -100,6 +100,10 @@ export const App = () => {
   }, [page, imageName])
 
   async function fetchImgData() {
+    if (!imageName) {
+      return;
+    }
+
     if (page === 1) {
       onLoadMore(false);
       setImages([]);
@@ -110,12 +114,13 @@ export const App = () => {
     try {
       const { hits, total } = await fetchImg(imageName, page);
   
-      setImages([...images, ...hits]);
-
+      
       if (!total) {
         setLoading(false);
-          return alert('На жаль, за вашим запитом нічого не знайдено');
+        
+        return alert('На жаль, за вашим запитом нічого не знайдено');
       };
+      setImages([...images, ...hits]);
       setLoading(false);
       
     } catch (error) {
